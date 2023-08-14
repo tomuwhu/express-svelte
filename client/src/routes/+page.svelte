@@ -15,18 +15,18 @@
 </script>
 <div>
   {#if name != ''}
-  {name}
-  <br>
-  <button on:click={() => {
-    localStorage.setItem('name', null)
-    name = ''
-  }}>Kijelentkezés</button>
+    <h1>Üdvözlöm, {name}</h1>
+    <br>
+    <button on:click={() => {
+      localStorage.setItem('name', null)
+      name = ''
+    }}>Kijelentkezés</button>
   {:else if name == 'startup'}
-  Starting...
+    Starting...
   {:else}
-  <input type="text" bind:value={un} placeholder="Felhasználónév (tom)"><br>
-  <input type="text" bind:value={pw} placeholder="Jelszó (1234)"><br>
-  <button on:click={f}>Bejelentkezés</button>
+    <input type="text" bind:value={un} placeholder="Felhasználónév (tom)"><br>
+    <input type="text" bind:value={pw} placeholder="Jelszó (1234)"><br>
+    <button on:click={f}>Bejelentkezés</button>
   {/if}
 </div>
 <style>
