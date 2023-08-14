@@ -3,7 +3,7 @@
   import md5 from 'md5'
   import { onMount } from 'svelte';
   var un = '', pw = '', name = 'startup'
-  onMount(() => name =  localStorage.getItem('name') )
+  onMount(() => name = localStorage.getItem('name') || '')
   function f() {
     axios
       .post("//localhost:3000/server", {un: un, pw: md5(pw)})
@@ -14,7 +14,7 @@
   }
 </script>
 <div>
-  {#if name!=''}
+  {#if name != ''}
   {name}
   <br>
   <button on:click={() => {

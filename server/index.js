@@ -19,10 +19,6 @@ app.post('/server', (req, res) => {
   )
 })
 
-app.get('/server', (req, res) => {
-  res.json({x: 'cica'})
-})
-
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
