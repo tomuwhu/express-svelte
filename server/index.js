@@ -14,8 +14,11 @@ app.post('/server', (req, res) => {
   res.json({rnd, c: Number(req.body.c) + rnd})
 })
 
-app.get('/server', (req, res) => {
-  db.all("SELECT * FROM user",[], (err, data) => res.json({data, err}))
+app.get('/server/:un/:pw', (req, res) => {
+    db.all(
+      "SELECT * FROM user WHERE un = ? and pw = ?",
+      [req.params.un, req.params.pw],
+      (err, data) => res.json({data, err}))
 })
 
 app.listen(port, () => {
