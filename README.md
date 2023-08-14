@@ -2,21 +2,21 @@
 
 To Dev Server:
 
-```text
+```bash
 cd server
 npm run dev
 ```
 
 To Dev Client:
 
-```text
+```bash
 cd client
 npm run dev
 ```
 
 To Build Client:
 
-```text
+```bash
 cd client
 npm run build
 ```
