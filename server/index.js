@@ -10,15 +10,17 @@ app.use(cors())
 app.use('/', express.static(__dirname +'/../client/build'))
 
 app.post('/server', (req, res) => {
-  rnd = Math.random()
-  res.json({rnd, c: Number(req.body.c) + rnd})
+  un = req.body.un
+  pw = req.body.pw
+  db.all(
+    "SELECT * FROM user WHERE un = ? and pw = ?",
+    [un, pw],
+    (err, data) => data[0] && res.json({name: data[0].name})
+  )
 })
 
-app.get('/server/:un/:pw', (req, res) => {
-    db.all(
-      "SELECT * FROM user WHERE un = ? and pw = ?",
-      [req.params.un, req.params.pw],
-      (err, data) => res.json({data, err}))
+app.get('/server', (req, res) => {
+  res.json({x: 'cica'})
 })
 
 app.listen(port, () => {

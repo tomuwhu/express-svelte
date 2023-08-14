@@ -1,25 +1,39 @@
 <script>
   import axios from 'axios'
-  var prev = 0, a = 1, b = 1
+  import md5 from 'md5'
+  import { onMount } from 'svelte';
+  var un = '', pw = '', name = 'startup'
+  onMount(() => name =  localStorage.getItem('name') )
   function f() {
     axios
-      .post("//localhost:3000/server", {c: a})
+      .post("//localhost:3000/server", {un: un, pw: md5(pw)})
       .then(resp => {
-        prev = a
-        a = resp.data.c
-        b = resp.data.rnd
+        name = resp.data.name
+        localStorage.setItem('name', name)
       })
   }
 </script>
 <div>
-  <button on:click={f}>Post data: {a}</button>
-  <hr>
-  Answer: {prev} + {b} = {a}
-  <hr>
-  {prev.toFixed(2)} + {b.toFixed(2)} =? {a.toFixed(2)} 
+  {#if name!=''}
+  {name}
+  <br>
+  <button on:click={() => {
+    localStorage.setItem('name', null)
+    name = ''
+  }}>Kijelentkezés</button>
+  {:else if name == 'startup'}
+  Starting...
+  {:else}
+  <input type="text" bind:value={un} placeholder="Felhasználónév (tom)"><br>
+  <input type="text" bind:value={pw} placeholder="Jelszó (1234)"><br>
+  <button on:click={f}>Bejelentkezés</button>
+  {/if}
 </div>
 <style>
   div {
     text-align: center;
+  }
+  input, button {
+    margin: 10px;
   }
 </style>
