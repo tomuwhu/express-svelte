@@ -1,0 +1,15 @@
+{
+  "name": "express-svelte",
+  "version": "1.0.0",
+  "description": "Express-Svelte",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "nodemon server/index.js",
+    "run": "nodemon server/index.js & "
+  },
+  "author": "Dr. Németh Tamás",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5"
+  }
+}
