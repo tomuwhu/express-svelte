@@ -8,7 +8,8 @@ app.use(cors())
 app.use('/', express.static(__dirname +'/../client/build'))
 
 app.post('/server', (req, res) => {
-  res.json({x: 2, c: req.body.c + 1})
+  rnd = Math.random()
+  res.json({rnd, c: Number(req.body.c) + rnd})
 })
 
 app.get('/server', (req, res) => {
