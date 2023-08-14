@@ -3,7 +3,7 @@
   import md5 from 'md5'
   import { onMount } from 'svelte';
   var un = '', pw = '', name = '-'
-  onMount(() => name = localStorage.getItem('name') || '')
+  onMount(() => name = localStorage.getItem('name') || null)
   function f() {
     axios
       .post("//localhost:3000/server", {un: un, pw: md5(pw)})
@@ -14,12 +14,12 @@
   }
 </script>
 <div>
-  {#if name != ''}
+  {#if name != null}
     <h1>Üdvözlöm, {name}</h1>
     <br>
     <button on:click={() => {
       localStorage.removeItem('name')
-      name = ''
+      name = null
     }}>Kijelentkezés</button>
   {:else if name == '-'}
     Starting...
