@@ -2,6 +2,8 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 const port = 3000
+const sqlite3 = require('sqlite3').verbose()
+const db = new sqlite3.Database('db.db')
 
 app.use(express.json())
 app.use(cors())
@@ -13,7 +15,7 @@ app.post('/server', (req, res) => {
 })
 
 app.get('/server', (req, res) => {
-  res.json({x: 3})
+  db.all("SELECT * FROM user",[], (err, data) => res.json({data, err}))
 })
 
 app.listen(port, () => {
