@@ -18,7 +18,7 @@
     <h1>Üdvözlöm, {name}</h1>
     <br>
     <button on:click={() => {
-      localStorage.setItem('name', null)
+      localStorage.removeItem('name')
       name = ''
     }}>Kijelentkezés</button>
   {:else if name == 'startup'}
