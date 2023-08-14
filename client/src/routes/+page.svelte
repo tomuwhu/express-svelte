@@ -2,7 +2,7 @@
   import axios from 'axios'
   import md5 from 'md5'
   import { onMount } from 'svelte';
-  var un = '', pw = '', name = 'startup'
+  var un = '', pw = '', name = '-'
   onMount(() => name = localStorage.getItem('name') || '')
   function f() {
     axios
@@ -21,7 +21,7 @@
       localStorage.removeItem('name')
       name = ''
     }}>Kijelentkezés</button>
-  {:else if name == 'startup'}
+  {:else if name == '-'}
     Starting...
   {:else}
     <input type="text" bind:value={un} placeholder="Felhasználónév (tom)"><br>
